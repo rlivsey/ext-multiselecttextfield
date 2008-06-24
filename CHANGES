@@ -1,0 +1,9 @@
+30/11/2007 - v0.0.3
+ * initialize data stores to stop interference
+
+30/11/2007 - v0.0.2 
+ * added validation
+ * fixed bug deleting items
+
+29/11/2007 - v0.0.1
+ * initial version

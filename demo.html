@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>MultiSelectTextField</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+<link href="../../resources/css/ext-all.css" media="screen" rel="Stylesheet" type="text/css" />
+<link href="../../examples/examples.css" media="screen" rel="Stylesheet" type="text/css" />
+
+<script src="../../adapter/ext/ext-base.js" type="text/javascript"></script>
+<script src="../../ext-all-debug.js" type="text/javascript"></script>
+<script src="../../examples/form/states.js" type="text/javascript"></script>
+<script src="Ext.ux.MultiSelectTextField.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+// the multi select field will be available as this
+var select;
+
+Ext.onReady(function() {
+
+  Ext.QuickTips.init();
+
+  var states = new Ext.data.SimpleStore({
+    fields: ['abbr', 'state', 'nick'],
+    data: Ext.exampledata.states
+  });
+
+  select = new Ext.ux.MultiSelectTextField({
+    fieldLabel: 'Send To',
+    name: 'to[]',
+    anchor:'100%',
+    store: states,
+    mode: 'local',
+    displayField: 'state',
+    valueField: 'abbr',
+    allowBlank: false,
+    minLength: 2,
+    maxLength: 4
+  });
+
+  var form = new Ext.form.FormPanel({
+    baseCls: 'x-plain',
+    labelWidth: 55,
+    defaultType: 'textfield',
+
+    items: [
+      select,
+      {
+        fieldLabel: 'Subject',
+        name: 'subject',
+        anchor: '100%'
+      },
+      {
+        xtype: 'textarea',
+        hideLabel: true,
+        name: 'msg',
+        anchor: '100% -53'
+      }
+    ]
+  });
+
+  var window = new Ext.Window({
+    title: 'Resize Me',
+    width: 500,
+    height:300,
+    minWidth: 300,
+    minHeight: 200,
+    layout: 'fit',
+    plain:true,
+    bodyStyle:'padding:5px;',
+    buttonAlign:'center',
+    items: form,
+    maximizable: true,
+
+    buttons: [{
+      text: 'Send'
+    },{
+      text: 'Cancel'
+    }]
+  });
+
+  window.show();
+});
+</script>
+
+</head>
+<body>
+<h1>MultiSelectTextField</h1>
+
+<p>
+  Textual Multi select the 'Send To' field in the form below is an example.
+</p>
+<p>
+  [<a href="MultiSelectTextField.0.1.zip">download</a>] or [<a href="http://svn.livsey.org/experiments/javascript/ext/2.0/ux/MultiSelectTextField">browse SVN</a>]
+</p>
+<p>
+  The field is globally available as 'select' so you can mess with it in firebug etc...
+</p>
+
+</body>
+</html>
